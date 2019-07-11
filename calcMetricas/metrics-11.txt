@@ -24,12 +24,17 @@ Recall or Sensibility (S:) or True Positive Rate (TPR:):
 	RecallMin:(MS:)	0,000
 	RecallMinIndex:	1
 	RecallMacro-Media (MM):	0,250
-	TRecallClasses:	1,000	0,000	0,000	0,000	
+	RecallClasses:	1,000	0,000	0,000	0,000	
 Precision: 
 	PrecisionMin:(MS:)	0,000
 	PrecisionMinIndex:	1
 	PrecisionMacro-Media:	0,100
-	TRecallClasses:	0,400	0,000	0,000	0,000	
+	PrecisionClasses:	0,400	0,000	0,000	0,000	
+F1-Score: 
+	F1-ScoreMin:(MS:)	0,000
+	F1-ScoreMinIndex:	1
+	F1-ScoreMacro-Media:	0,143
+	F1-ScoreClasses:	0,571	0,000	0,000	0,000	
 Specificity (Sp) or True Negative Rate (TNR): 
 	TNRMedia: 	0,750
 	TNRClasses:	0,000	1,000	1,000	1,000	
