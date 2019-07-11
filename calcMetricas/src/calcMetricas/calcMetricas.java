@@ -272,6 +272,37 @@ public class calcMetricas {
         }
         auxString+="\n";
 
+        // F1-Score 
+        double[] F1= new double[numClases];
+        double F1Media=0, F1Min=1;
+        int F1MinIndex= 0;
+        for (int j=0; j < numClases; j++){
+//            if (confusion[j][j] != 0 && confusion[j][numClases] == 0 ){
+//                TPR[j]= -0;
+//            }
+            if (Prec[j] + TPR[j] == 0 ){
+                F1[j]= 0;
+            }
+            else{
+                F1[j]= 2 * ((Prec[j] * TPR[j]) / (Prec[j] + TPR[j]));
+            }
+            F1Media+= F1[j];
+            if (F1[j] < F1Min){
+                F1Min= F1[j];
+                F1MinIndex= j;
+            }
+        }        
+        F1Media= F1Media / (double) numClases;        
+        auxString+="F1-Score: \n";
+        auxString+="\tF1-ScoreMin:(MS:)\t" + format.format(F1Min) + "\n";
+        auxString+="\tF1-ScoreMinIndex:\t" + F1MinIndex + "\n";
+        auxString+="\tF1-ScoreMacro-Media:\t" + format.format(F1Media) + "\n";
+        auxString+="\tF1-ScoreClasses:\t";
+        for (int j=0; j < numClases; j++){
+            auxString+= format.format(F1[j]) + "\t";            
+        }
+        auxString+="\n";
+
         // Sp, FPR
         double[] TNR= new double[numClases];
         double[] FPR= new double[numClases];
