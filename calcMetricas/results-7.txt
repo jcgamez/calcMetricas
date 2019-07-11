@@ -1,0 +1,26 @@
+#numberOfClasses 
+#RegressionValues (if RegressionValues == 0 -> there aren't definitions of class, directly with @data)
+#Class1 inittial
+#Class2 inittial
+#...
+#ClassN inittial final
+#@data
+#RealValue PredictedValue (each example in one row)
+4
+1
+1
+5
+7
+9 10
+@data
+1	9
+5	9
+5	9
+7	1
+7	1
+7	1
+9	1
+9	1
+9	1
+9	1
+

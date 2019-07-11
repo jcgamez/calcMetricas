@@ -1,0 +1,75 @@
+-- Confusion Matrix -- 
+0	0	0	1	|	1
+0	0	2	0	|	2
+0	3	0	0	|	3
+4	0	0	0	|	4
+------	------	------	------	|	------
+4	3	2	1	|	10
+#numberOfClasses 
+#RegressionValues (if RegressionValues == 0 -> there aren't definitions of class, directly with @data)
+#Class1 inittial
+#Class2 inittial
+#...
+#ClassN inittial final 
+4
+1
+1,000
+5,000
+7,000
+9,000	10,000
+@metrics
+-- Classification metrics -- 
+CCR:	0,000
+Recall or Sensibility (S:) or True Positive Rate (TPR:): 
+	RecallMin:(MS:)	0,000
+	RecallMinIndex:	0
+	RecallMacro-Media (MM):	0,000
+	TRecallClasses:	0,000	0,000	0,000	0,000	
+Precision: 
+	PrecisionMin:(MS:)	0,000
+	PrecisionMinIndex:	0
+	PrecisionMacro-Media:	0,000
+	TRecallClasses:	0,000	0,000	0,000	0,000	
+Specificity (Sp) or True Negative Rate (TNR): 
+	TNRMedia: 	0,682
+	TNRClasses:	0,556	0,625	0,714	0,833	
+False Positive Rate (FPR): 
+	FPRMedia:	0,318
+	FPRClasses:	0,444	0,375	0,286	0,167	
+Kappa Cohen:	-0,250
+Area Under Curve ROC (AUC):
+	AUCMedia:	0,341
+	AUCClasses:	0,278	0,312	0,357	0,417	
+-- Regression metrics -- 
+MSE:	34,000
+RMSE:	5,831
+R-MAE:	5,000
+-- Ordinal metrics -- 
+O-MAE: 
+	O-MAEAllClasses:	2,000
+	O-AMAE:	2,000
+	O-MMAE:	3,000
+	O-MMAEIndex:	0
+	O-mMAE:	1,000
+	O-mMAEIndex:	1
+	O-MAEClasses:	3,000	1,000	1,000	3,000	
+Rs:	-1,000
+	numerador:	-10,000
+	denominador:	10,000
+Taub:	-1,000
+	numerador:	-70,000
+	denominador:	70,000
+OC_beta:	0,925
+	beta:	0,008
+myMetric:	0,167
+@data (realValue	predictedValue	realClass	predictedClass
+1,000	9,000	0	3
+5,000	7,000	1	2
+5,000	7,000	1	2
+7,000	5,000	2	1
+7,000	5,000	2	1
+7,000	5,000	2	1
+9,000	1,000	3	0
+9,000	1,000	3	0
+9,000	1,000	3	0
+9,000	1,000	3	0

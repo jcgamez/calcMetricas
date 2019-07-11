@@ -1,0 +1,23 @@
+#numeroDeClases
+#Clase1 comienzo
+#Clase2 comienzo
+#...
+#ClaseN comienzo fin
+#@data
+#ValorActual ValorPredicho (una fila para cada ejemplo)
+4
+1
+5
+7
+9 10
+@data
+1 1
+5 1
+5 1
+7 1
+7 1
+7 1
+9 1
+9 1
+9 1
+9 1

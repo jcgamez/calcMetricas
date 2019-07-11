@@ -1,0 +1,83 @@
+#numberOfClasses 
+#RegressionValues (if RegressionValues == 0 -> there aren't definitions of class, directly with @data)
+#Class1 inittial
+#Class2 inittial
+#...
+#ClassN inittial final 
+4
+1
+1,000
+5,000
+7,000
+9,000	10,000
+@metrics
+-- Confusion Matrix -- 
+1	0	0	0	|	1
+2	0	0	0	|	2
+3	0	0	0	|	3
+4	0	0	0	|	4
+------	------	------	------	|	------
+10	0	0	0	|	10
+-- Classification metrics -- 
+CCR: 
+	0,100
+Sensibility (S) or True Positive Rate (TPR): 
+	Min(SM):		index:
+		0,000		1
+	Macro-Media (MM):
+		0,250
+	Classes:
+		1,000	0,000	0,000	0,000	
+Specificity (Sp) or True Negative Rate (TNR): 
+	Media: 
+		0,750
+	Classes:
+		0,000	1,000	1,000	1,000	
+ False Positive Rate (FPR): 
+	Media: 
+		0,250
+	Classes:
+		1,000	0,000	0,000	0,000	
+Kappa Cohen:
+	0,000
+Area Under Curve ROC (AUC):
+	Media:
+		0,500
+	Classes:
+		0,500	0,500	0,500	0,500	
+-- Regression metrics -- 
+MSE: 
+		39,600
+RMSE: 
+		6,293
+MAE: 
+		5,800
+-- Ordinal metrics -- 
+MAE: 
+	MAE all classes: 
+		2,000
+	AMAE: 
+		1,500
+	MMAE: 		index:
+		3,000		3
+	mMAE: 		index:
+		0,000		0
+	Classes:
+		0,000	1,000	2,000	3,000	
+Rs: 		numerador:		denominador: 
+		�		0,000		0,000
+Taub: 		numerador:		denominador: 
+		�		0,000		0,000
+OC_beta: 		beta:
+		0,833		0,008
+@data (realValue	predictedValue	realClass	predictedClass
+1,000	1,000	0	0
+5,000	1,000	1	0
+5,000	1,000	1	0
+7,000	1,000	2	0
+7,000	1,000	2	0
+7,000	1,000	2	0
+9,000	1,000	3	0
+9,000	1,000	3	0
+9,000	1,000	3	0
+9,000	1,000	3	0
