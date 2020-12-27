@@ -212,7 +212,7 @@ public class calcMetricas {
 
         // TPR, Smin, MM, RECALL
         double[] TPR= new double[numClases];
-        double TPRMedia=0, TPRMin=1;
+        double TPRMedia=0, TPRMicro=0, TPRMicroDenomin=0, TPRMin=1;
         int TPRMinIndex= 0;
         for (int j=0; j < numClases; j++){
 //            if (confusion[j][j] != 0 && confusion[j][numClases] == 0 ){
@@ -223,6 +223,8 @@ public class calcMetricas {
             }
             else{
                 TPR[j]= confusion[j][j] / confusion[j][numClases];
+                TPRMicro+= confusion[j][j];
+                TPRMicroDenomin+= confusion[j][numClases];
             }
             TPRMedia+= TPR[j];
             if (TPR[j] < TPRMin){
@@ -231,9 +233,11 @@ public class calcMetricas {
             }
         }        
         TPRMedia= TPRMedia / (double) numClases;        
+        TPRMicro= TPRMicro / TPRMicroDenomin;
         auxString+="Recall or Sensibility (S:) or True Positive Rate (TPR:): \n";
         auxString+="\tRecallMin:(MS:)\t" + format.format(TPRMin) + "\n";
         auxString+="\tRecallMinIndex:\t" + TPRMinIndex + "\n";
+        auxString+="\tRecallMicro (MM):\t" + format.format(TPRMicro) + "\n";
         auxString+="\tRecallMacro-Media (MM):\t" + format.format(TPRMedia) + "\n";
         auxString+="\tRecallClasses:\t";
         for (int j=0; j < numClases; j++){
@@ -243,7 +247,7 @@ public class calcMetricas {
         
         // Precision 
         double[] Prec= new double[numClases];
-        double PrecMedia=0, PrecMin=1;
+        double PrecMedia=0, PrecMicro=0, PrecMicroDenomin=0, PrecMin=1;
         int PrecMinIndex= 0;
         for (int j=0; j < numClases; j++){
 //            if (confusion[j][j] != 0 && confusion[j][numClases] == 0 ){
@@ -254,6 +258,8 @@ public class calcMetricas {
             }
             else{
                 Prec[j]= confusion[j][j] / confusion[numClases][j];
+                PrecMicro+= confusion[j][j];
+                PrecMicroDenomin+= confusion[numClases][j];
             }
             PrecMedia+= Prec[j];
             if (Prec[j] < PrecMin){
@@ -262,9 +268,11 @@ public class calcMetricas {
             }
         }        
         PrecMedia= PrecMedia / (double) numClases;        
+        PrecMicro= PrecMicro / PrecMicroDenomin;
         auxString+="Precision: \n";
         auxString+="\tPrecisionMin:(MS:)\t" + format.format(PrecMin) + "\n";
         auxString+="\tPrecisionMinIndex:\t" + PrecMinIndex + "\n";
+        auxString+="\tPrecisionMicro:\t" + format.format(PrecMicro) + "\n";
         auxString+="\tPrecisionMacro-Media:\t" + format.format(PrecMedia) + "\n";
         auxString+="\tPrecisionClasses:\t";
         for (int j=0; j < numClases; j++){
@@ -274,7 +282,7 @@ public class calcMetricas {
 
         // F1-Score 
         double[] F1= new double[numClases];
-        double F1Media=0, F1Min=1;
+        double F1Media=0, F1Micro=0, F1Min=1;
         int F1MinIndex= 0;
         for (int j=0; j < numClases; j++){
 //            if (confusion[j][j] != 0 && confusion[j][numClases] == 0 ){
@@ -293,9 +301,11 @@ public class calcMetricas {
             }
         }        
         F1Media= F1Media / (double) numClases;        
+        F1Micro= 2*((PrecMicro * TPRMicro) / (PrecMicro + TPRMicro));
         auxString+="F1-Score: \n";
         auxString+="\tF1-ScoreMin:(MS:)\t" + format.format(F1Min) + "\n";
         auxString+="\tF1-ScoreMinIndex:\t" + F1MinIndex + "\n";
+        auxString+="\tF1-ScoreMicro:\t" + format.format(F1Micro) + "\n";
         auxString+="\tF1-ScoreMacro-Media:\t" + format.format(F1Media) + "\n";
         auxString+="\tF1-ScoreClasses:\t";
         for (int j=0; j < numClases; j++){
