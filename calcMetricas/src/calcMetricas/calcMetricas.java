@@ -401,7 +401,7 @@ public class calcMetricas {
         if (regresion == 1){
             auxString="-- Regression metrics -- \n";
             // MSE, RMSE, MAE
-            double MSE=0, RMSE=0, MAE=0;
+            double MSE=0, RMSE=0, MAE=0, Media= 0, DesvTip=0;
             for (int j=0; j < numEjemplos; j++){
                 MSE+= (values[j][0] - values[j][1]) * (values[j][0] - values[j][1]);
                 MAE+= Math.abs(values[j][0] - values[j][1]);
