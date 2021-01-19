@@ -406,8 +406,12 @@ public class calcMetricas {
             double[] MAE= new double[numClases+1];
             double[] MediaDifRealEstimado= new double[numClases+1];
             double[] DesvTipDifRealEstimado= new double[numClases+1];
+            double[] MediaValorReal= new double[numClases+1];
+            double[] DesvTipValorReal= new double[numClases+1];
+            double[] MediaValorEstimado= new double[numClases+1];
+            double[] DesvTipValorEstimado= new double[numClases+1];
             for (int j=0; j < numClases+1; j++){
-                MSE[j]= RMSE[j]= MAE[j]= MediaDifRealEstimado[j]= DesvTipDifRealEstimado[j]= 0;
+                MSE[j]= RMSE[j]= MAE[j]= MediaDifRealEstimado[j]= DesvTipDifRealEstimado[j]= MediaValorReal[j]= DesvTipValorReal[j]= MediaValorEstimado[j]= DesvTipValorEstimado[j]= 0;
             }            
             for (int j=0; j < numEjemplos; j++){
                 int clasReal=  getClass(values[j][0], defClases);        
@@ -418,20 +422,32 @@ public class calcMetricas {
                 MAE[numClases]+= Math.abs(values[j][0] - values[j][1]);
                 MediaDifRealEstimado[clasReal]+= values[j][0] - values[j][1];
                 MediaDifRealEstimado[numClases]+= values[j][0] - values[j][1];                
+                MediaValorReal[clasReal]+= values[j][0];
+                MediaValorReal[numClases]+= values[j][0];
+                MediaValorEstimado[clasReal]+= values[j][1];
+                MediaValorEstimado[numClases]+= values[j][1];
             }
             for (int j=0; j < numClases+1; j++){
                 MSE[j]= MSE[j] / (double) confusion[j][numClases];
                 RMSE[j]= Math.sqrt(MSE[j]);
                 MAE[j]= MAE[j] / (double) confusion[j][numClases];
-                MediaDifRealEstimado[j]= MediaDifRealEstimado[j] / (double) confusion[j][numClases];                
+                MediaDifRealEstimado[j]= MediaDifRealEstimado[j] / (double) confusion[j][numClases];
+                MediaValorReal[j]= MediaValorReal[j] / (double) confusion[j][numClases];
+                MediaValorEstimado[j]= MediaValorEstimado[j] / (double) confusion[j][numClases];                
             }
             for (int j=0; j < numEjemplos; j++){
-                int clasReal=  getClass(values[j][0], defClases);        
+                int clasReal=  getClass(values[j][0], defClases);   
                 DesvTipDifRealEstimado[clasReal]+= ((values[j][0] - values[j][1]) - MediaDifRealEstimado[clasReal]) * ((values[j][0] - values[j][1]) - MediaDifRealEstimado[clasReal]);
                 DesvTipDifRealEstimado[numClases]+= ((values[j][0] - values[j][1]) - MediaDifRealEstimado[numClases]) * ((values[j][0] - values[j][1]) - MediaDifRealEstimado[numClases]);
+                DesvTipValorReal[clasReal]+= ((values[j][0] - MediaValorReal[clasReal]) * (values[j][0] - MediaValorReal[clasReal]));
+                DesvTipValorReal[numClases]+= ((values[j][0] - MediaValorReal[numClases]) * (values[j][0] - MediaValorReal[numClases]));
+                DesvTipValorEstimado[clasReal]+= ((values[j][1] - MediaValorEstimado[clasReal]) * (values[j][1] - MediaValorEstimado[clasReal]));
+                DesvTipValorEstimado[numClases]+= ((values[j][1] - MediaValorEstimado[numClases]) * (values[j][1] - MediaValorEstimado[numClases]));
             }
             for (int j=0; j < numClases+1; j++){
                 DesvTipDifRealEstimado[j]= Math.sqrt(DesvTipDifRealEstimado[j] / (double) confusion[j][numClases]);
+                DesvTipValorReal[j]= Math.sqrt(DesvTipValorReal[j] / (double) confusion[j][numClases]);
+                DesvTipValorEstimado[j]= Math.sqrt(DesvTipValorEstimado[j] / (double) confusion[j][numClases]);
             }            
             auxString+="MSE:\t" + format.format(MSE[numClases]) + "\n";
             auxString+="\tMSEClasses:\t";
@@ -461,6 +477,30 @@ public class calcMetricas {
             auxString+="\tSTDMediaClasses:\t";
             for (int j=0; j < numClases; j++){
                 auxString+= format.format(DesvTipDifRealEstimado[j]) + "\t";
+            }
+            auxString+="\n";
+            auxString+="Media de valores reales:\t" + format.format(MediaValorReal[numClases]) + "\n";
+            auxString+="\tMediaClasses:\t";
+            for (int j=0; j < numClases; j++){
+                auxString+= format.format(MediaValorReal[j]) + "\t";
+            }
+            auxString+="\n";
+            auxString+="Desviación típica de la Media de los valores reales:\t" + format.format(DesvTipValorReal[numClases]) + "\n";
+            auxString+="\tSTDMediaClasses:\t";
+            for (int j=0; j < numClases; j++){
+                auxString+= format.format(DesvTipValorReal[j]) + "\t";
+            }
+            auxString+="\n";
+            auxString+="Media de valores estimados:\t" + format.format(MediaValorEstimado[numClases]) + "\n";
+            auxString+="\tMediaClasses:\t";
+            for (int j=0; j < numClases; j++){
+                auxString+= format.format(MediaValorEstimado[j]) + "\t";
+            }
+            auxString+="\n";
+            auxString+="Desviación típica de la Media de los valores estimados:\t" + format.format(DesvTipValorEstimado[numClases]) + "\n";
+            auxString+="\tSTDMediaClasses:\t";
+            for (int j=0; j < numClases; j++){
+                auxString+= format.format(DesvTipValorEstimado[j]) + "\t";
             }
             auxString+="\n";
             writeResFile(fileMetrics, auxString);
