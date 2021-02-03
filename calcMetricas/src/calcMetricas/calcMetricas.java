@@ -241,7 +241,7 @@ public class calcMetricas {
         auxString+="\tRecallMinIndex:\t" + TPRMinIndex + "\n";
         auxString+="\tRecallMicro (MM):\t" + format.format(TPRMicro) + "\n";
         auxString+="\tRecallMacro-Media (MM):\t" + format.format(TPRMedia) + "\n";
-        auxString+="\tRecallWeighteda (W):\t" + format.format(TPRWeight) + "\n";
+        auxString+="\tRecallWeighted:\t" + format.format(TPRWeight) + "\n";
         auxString+="\tRecallClasses:\t";
         for (int j=0; j < numClases; j++){
             auxString+= format.format(TPR[j]) + "\t";            
@@ -315,7 +315,7 @@ public class calcMetricas {
         auxString+="\tF1-ScoreMinIndex:\t" + F1MinIndex + "\n";
         auxString+="\tF1-ScoreMicro:\t" + format.format(F1Micro) + "\n";
         auxString+="\tF1-ScoreMacro-Media:\t" + format.format(F1Media) + "\n";
-        auxString+="\tF1-ScoreWeight:\t" + format.format(F1Weight) + "\n";
+        auxString+="\tF1-ScoreWeighted:\t" + format.format(F1Weight) + "\n";
         auxString+="\tF1-ScoreClasses:\t";
         for (int j=0; j < numClases; j++){
             auxString+= format.format(F1[j]) + "\t";            
